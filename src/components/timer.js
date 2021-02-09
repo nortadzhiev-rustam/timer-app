@@ -45,7 +45,7 @@ const Timer = ({ initialMinutes, isProgress, onPause }) => {
       <button
         className={`btn btn-lg ${
           isPaused ? 'btn-outline-success' : 'btn-outline-warning'
-        } d-block w-25`}
+        } d-blockƒ`}
         onClick={() => {
           setIsPaused(!isPaused);
           onPause(!isPaused);

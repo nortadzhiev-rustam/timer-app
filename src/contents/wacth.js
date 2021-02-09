@@ -47,9 +47,9 @@ const Watch = (props) => {
         onClick={toggleProgress}
       >
         {isProgressEnable ? (
-          <FontAwesomeIcon icon={faStop} />
+          <FontAwesomeIcon size='lg' icon={faStop} />
         ) : (
-          <FontAwesomeIcon icon={faPlayCircle} />
+          <FontAwesomeIcon size='lg' icon={faPlayCircle} />
         )}
       </button>
       {isProgressEnable ? (
