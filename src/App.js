@@ -1,10 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Timer from './contents/wacth';
+import 'bootstrap/dist/js/bootstrap';
+import Watch from './contents/wacth';
 function App() {
   return (
     <div className='App'>
-      <Timer />
+      <Watch />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+
 const Timer = ({ initialMinutes, isProgress, onPause }) => {
   const [minutes, setMinutes] = useState(initialMinutes);
   const [seconds, setSeconds] = useState(0);
@@ -43,18 +44,19 @@ const Timer = ({ initialMinutes, isProgress, onPause }) => {
         {seconds < 10 ? `0${seconds}` : `${seconds}`}
       </span>
       <button
+        style={{ width: 50 }}
         className={`btn btn-lg ${
           isPaused ? 'btn-outline-success' : 'btn-outline-warning'
-        } d-blockƒ`}
+        } d-block rounded-pill`}
         onClick={() => {
           setIsPaused(!isPaused);
           onPause(!isPaused);
         }}
       >
         {isPaused ? (
-          <FontAwesomeIcon size='lg' icon={faPlay} />
+          <FontAwesomeIcon size='sm' icon={faPlay} />
         ) : (
-          <FontAwesomeIcon size='lg' icon={faPause} />
+          <FontAwesomeIcon size='sm' icon={faPause} />
         )}
       </button>
     </div>
