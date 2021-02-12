@@ -78,7 +78,7 @@ const Watch = (props) => {
       />
       <input
         style={{
-          width: 50,
+          width: 60,
           display: 'inline-block',
           marginRight: 20,
           WebkitAppearance: 'none',
