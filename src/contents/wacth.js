@@ -3,7 +3,7 @@ import Progress from '../components/progress';
 import Timer from '../components/timer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStop, faFlag } from '@fortawesome/free-solid-svg-icons';
-
+import './watch.css';
 const Watch = (props) => {
   const [initialTime, setInitialTime] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -70,9 +70,19 @@ const Watch = (props) => {
   };
 
   return (
-    <div style={{ flex: 1, marginTop: 100, width: '100%', padding: 50 }}>
+    <div className=' d-block justify-content-center align-items-center mx-5 my-5 w-50 bg-light p-5 rounded-3 shadow-lg'>
       <input
-        style={{ width: 100, display: 'inline-block', marginRight: 20 }}
+        type='text'
+        className='form-control'
+        style={{ width: 350, display: 'inline-block', marginRight: 30 }}
+      />
+      <input
+        style={{
+          width: 50,
+          display: 'inline-block',
+          marginRight: 20,
+          WebkitAppearance: 'none',
+        }}
         className='form-control'
         type='number'
         max={100}

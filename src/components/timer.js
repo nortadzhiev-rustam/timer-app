@@ -39,7 +39,7 @@ const Timer = ({ initialMinutes, isProgress, onPause }) => {
         justifyContent: 'center',
       }}
     >
-      <span style={{ fontSize: 100, fontWeight: 'bold' }}>
+      <span style={{ fontSize: 100, fontWeight: 'bold', color: 'coral'}}>
         {minutes < 10 ? `0${minutes}` : `${minutes}`} :{' '}
         {seconds < 10 ? `0${seconds}` : `${seconds}`}
       </span>
