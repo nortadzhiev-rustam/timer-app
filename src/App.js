@@ -2,6 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 import Watch from './contents/wacth';
+import 'animate.css/animate.css'
 function App() {
   return (
     <div className='App bg-info'>

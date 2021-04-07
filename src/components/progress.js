@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 const Progress = (props) => {
   const [seconds, setSeconds] = useState(0);
   //const [paused, setPaused] = useState(false);
-  const { timer, isProgress, isPaused } = props;
+  const { timer, isProgress, isPaused, isReset } = props;
   useEffect(() => {
-    setSeconds(timer * 60);
-  }, []);
+    if (!isReset) {
+      setSeconds(timer * 60);
+    } else {
+      setSeconds(0);
+    }
+  }, [isReset]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,12 +27,21 @@ const Progress = (props) => {
   }, [isPaused, seconds]);
 
   return (
-    <div className='progress mt-5 mx-5'>
+    <div
+      className={`progress ${
+        // seconds / 60 < 1
+        //   ? seconds > 0
+        //     ? 'animate__animated animate__heartBeat animate__infinite'
+        //     : null
+        //   : null
+        ''
+      } mt-5`}
+    >
       <div
         className={`progress-bar progress-bar-striped ${
-          seconds / 60 > 1
+          seconds / 60 >= 1
             ? 'bg-info'
-            : seconds / 60 < 1 && seconds > 10
+            : seconds >= 10
             ? 'bg-warning'
             : 'bg-danger'
         } ${isProgress && !isPaused ? 'progress-bar-animated' : ''}`}
@@ -36,7 +49,7 @@ const Progress = (props) => {
         aria-valuenow={seconds}
         aria-valuemin={0}
         aria-valuemax={100}
-        style={{ width: `${(seconds * 100) / (timer * 60)}%` }}
+        style={{ width: isReset ? 0 : `${(seconds * 100) / (timer * 60)}%` }}
       ></div>
     </div>
   );
