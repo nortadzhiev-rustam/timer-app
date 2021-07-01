@@ -7,8 +7,17 @@ import {
   faHistory,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Timer = ({ initialMinutes, isProgress, onPause, stop, reset, todo }) => {
+const Timer = ({
+  initialHours,
+  initialMinutes,
+  isProgress,
+  onPause,
+  stop,
+  reset,
+  todo,
+}) => {
   const [minutes, setMinutes] = useState(initialMinutes);
+  const [hours, setHours] = useState(initialHours);
   const [seconds, setSeconds] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   useEffect(() => {
@@ -21,21 +30,25 @@ const Timer = ({ initialMinutes, isProgress, onPause, stop, reset, todo }) => {
         }
       }
 
-      if (seconds === 0) {
-        if (minutes === 0) {
-          var audio = new Audio('assets/audio/glass.mp3');
-          audio.play();
-          clearInterval(myInterval);
-        } else {
-          setMinutes(minutes - 1);
-          setSeconds(59);
-        }
+      if (seconds === 0 && minutes === 0 && hours === 0) {
+        let audio = new Audio('assets/audio/glass.mp3');
+        audio.play();
+        clearInterval(myInterval);
+      } else if (seconds === 0 && minutes === 0 && hours !== 0) {
+        setHours(hours - 1);
+        setMinutes(59);
+        setSeconds(59);
+      } else if ((hours === 0 && minutes !== 0, seconds === 0)) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
       }
     }, 1000);
     return () => {
       clearInterval(myInterval);
     };
-  }, [isProgress, seconds, isPaused, minutes]);
+  }, [isProgress, seconds, isPaused, minutes, hours]);
+
+  useEffect(() => {}, []);
 
   return (
     <div
@@ -48,19 +61,28 @@ const Timer = ({ initialMinutes, isProgress, onPause, stop, reset, todo }) => {
     >
       <span
         className={` ${
-          minutes === 0
-            ? seconds === 0
-              ? null
-              : 'animate__animated animate__pulse animate__infinite'
+          hours === 0
+            ? minutes === 0
+              ? seconds === 0
+                ? null
+                : 'animate__animated animate__pulse animate__infinite'
+              : null
             : null
         }`}
         style={{
           fontSize: 100,
           fontWeight: 'bold',
           color:
-            minutes >= 1 ? '#277da1' : seconds < 10 ? '#ff006e' : '#ffbe0b',
+            hours > 0
+              ? '#277da1'
+              : minutes >= 1
+              ? '#277da1'
+              : seconds < 10
+              ? '#ff006e'
+              : '#ffbe0b',
         }}
       >
+        {hours > 0 ? `${hours < 10 ? `0${hours}` : `${hours}`} : ` : null}
         {minutes < 10 ? `0${minutes}` : `${minutes}`} :{' '}
         {seconds < 10 ? `0${seconds}` : `${seconds}`}
       </span>

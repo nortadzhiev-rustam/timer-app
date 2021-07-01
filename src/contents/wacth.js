@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Progress from '../components/progress';
 import Timer from '../components/timer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,6 +12,8 @@ const Watch = (props) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [todo, setTodo] = useState('');
   const [isReset, setIsReset] = useState(false);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
 
   const showModal = () => {
     return (
@@ -48,7 +50,14 @@ const Watch = (props) => {
       </div>
     );
   };
+  useEffect(() => {
+    let hour = initialTime / 60;
 
+    let rhours = Math.floor(hour);
+    let rminutes = (hour - rhours) * 60;
+    setHours(Math.floor(rhours));
+    setMinutes(Math.round(rminutes));
+  }, [initialTime]);
   const toggleProgress = () => {
     if (initialTime !== 0) {
       setIsProgressEnable(!isProgressEnable);
@@ -62,14 +71,14 @@ const Watch = (props) => {
   };
 
   const handleChange = (e) => {
-    setInitialTime(e.target.value);
+    setInitialTime(Number.parseInt(e.target.value));
   };
 
   return (
-    <div className=' d-flex flex-column justify-content-between align-items-center m-5 w-50 bg-light py-5 rounded-3 shadow-lg'>
+    <div className=' d-flex flex-column justify-content-between align-items-center m-5 w-75 bg-light py-5 rounded-3 shadow-lg'>
       {isShowModal ? showModal() : null}
       {isProgressEnable ? null : (
-        <div class='input-group mb-3 px-5'>
+        <div className='input-group mb-3 px-5'>
           <input
             type='text'
             className='form-control '
@@ -77,7 +86,7 @@ const Watch = (props) => {
             onChange={(e) => setTodo(e.target.value)}
             aria-describedby='button-addon2'
           />
-          <span class='input-group-text'>
+          <span className='input-group-text'>
             <input
               style={{
                 width: 50,
@@ -86,7 +95,6 @@ const Watch = (props) => {
                 outline: 'none',
                 textAlign: 'center',
               }}
-
               className='input-group-text'
               type='number'
               max={100}
@@ -97,8 +105,8 @@ const Watch = (props) => {
             />
           </span>
           <button
-          style={{width: 70}}
-            class='btn btn-outline-primary'
+            style={{ width: 70 }}
+            className='btn btn-outline-primary'
             type='button'
             id='button-addon2'
             type='button'
@@ -117,7 +125,8 @@ const Watch = (props) => {
             isReset={isReset}
           />
           <Timer
-            initialMinutes={initialTime}
+            initialHours={hours}
+            initialMinutes={minutes}
             isProgress={isProgressEnable}
             onPause={(isPaused) => handlePause(isPaused)}
             stop={() => setIsProgressEnable(!isProgressEnable)}

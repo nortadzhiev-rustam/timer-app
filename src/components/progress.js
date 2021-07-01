@@ -60,5 +60,5 @@ export default Progress;
 Progress.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   isProgress: PropTypes.bool.isRequired,
-  timer: PropTypes.string.isRequired,
+  timer: PropTypes.number.isRequired,
 };
