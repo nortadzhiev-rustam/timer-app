@@ -109,7 +109,6 @@ const Watch = (props) => {
             className='btn btn-outline-primary'
             type='button'
             id='button-addon2'
-            type='button'
             onClick={toggleProgress}
           >
             <FontAwesomeIcon size='lg' icon={faFlag} />

@@ -32,7 +32,7 @@ const CircleProgressBar = (props) => {
     } else {
       setSeconds(0);
     }
-  }, [isReset]);
+  }, [isReset, timer]);
 
   React.useEffect(() => {
     const interval = setInterval(() => {

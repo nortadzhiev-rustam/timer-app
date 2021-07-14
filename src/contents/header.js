@@ -1,19 +1,16 @@
 import React from 'react';
 
+
 const Header = () => {
-
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark sticky-top'>
       <div className='container-fluid'>
         <img src='assets/img/logo192.png' alt='logo' width='30' />
-        <a className='navbar-brand' href='#'>
-          Timer
-        </a>
+        <span className='navbar-brand'>Timer</span>
         <button
           className='navbar-toggler'
           type='button'
@@ -27,11 +24,7 @@ const Header = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarColor01'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            <li className='nav-item'>
-              <a className='nav-link active' aria-current='page' href='#'>
-                Home
-              </a>
-            </li>
+            <li className='nav-item'><span className="text-white">Home</span></li>
           </ul>
           <form className='d-flex'>
             <input
@@ -40,7 +33,11 @@ const Header = () => {
               placeholder='Search'
               aria-label='Search'
             />
-            <button className='btn btn-outline-light' onClick={handleSearch} type='submit'>
+            <button
+              className='btn btn-outline-light'
+              onClick={handleSearch}
+              type='submit'
+            >
               Search
             </button>
           </form>
