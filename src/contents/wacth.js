@@ -129,6 +129,7 @@ const Watch = (props) => {
             setInitialTime(0);
             setIsReset(!isReset);
           }}
+          todo={todo}
         />
       ) : null}
     </div>

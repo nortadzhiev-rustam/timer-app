@@ -19,6 +19,7 @@ const CircleProgressBar = (props) => {
     onPause,
     stop,
     reset,
+    todo
   } = props;
   const [seconds, setSeconds] = React.useState(0);
   const [minutes, setMinutes] = React.useState(initialMinutes);
@@ -92,7 +93,7 @@ const CircleProgressBar = (props) => {
       <CircularProgressbar
         styles={buildStyles({
           
-          strokeLinecap: 'butt',
+          strokeLinecap: 'round',
           trailColor: '#ccc',
           textColor: '#fb5607',
           rotation: 1 / 2 + 1 / 8
@@ -103,11 +104,12 @@ const CircleProgressBar = (props) => {
         }${minutes < 10 ? `0${minutes}` : `${minutes}`}:${
           runningSeconds < 10 ? `0${runningSeconds}` : `${runningSeconds}`
         }`}
-        strokeWidth={15}
+        strokeWidth={10}
         circleRatio={0.75}
         
         
       />
+      <h2>{todo}</h2>
       <div className='d-inline-flex mt-3'>
         <button
           style={{ width: '50%', marginRight: 10 }}
