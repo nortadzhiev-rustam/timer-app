@@ -14,12 +14,12 @@ const Timer = ({
   onPause,
   stop,
   reset,
-  todo,
 }) => {
   const [minutes, setMinutes] = useState(initialMinutes);
   const [hours, setHours] = useState(initialHours);
   const [seconds, setSeconds] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
   useEffect(() => {
     let myInterval = setInterval(() => {
       if (seconds > 0) {
@@ -47,8 +47,6 @@ const Timer = ({
       clearInterval(myInterval);
     };
   }, [isProgress, seconds, isPaused, minutes, hours]);
-
-  useEffect(() => {}, []);
 
   return (
     <div
@@ -86,7 +84,7 @@ const Timer = ({
         {minutes < 10 ? `0${minutes}` : `${minutes}`} :{' '}
         {seconds < 10 ? `0${seconds}` : `${seconds}`}
       </span>
-      <span className='fs-2 mb-2'>{todo}</span>
+
       <h1 className='mb-4'>Time to focus!</h1>
 
       <div className='d-flex flex-row'>

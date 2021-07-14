@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 const Progress = (props) => {
   const [seconds, setSeconds] = useState(0);
-  //const [paused, setPaused] = useState(false);
+
   const { timer, isProgress, isPaused, isReset } = props;
   useEffect(() => {
     if (!isReset) {

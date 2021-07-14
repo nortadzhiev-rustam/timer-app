@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Progress from '../components/progress';
-import Timer from '../components/timer';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import './watch.css';
+import CircleProgressBar from '../components/CircleProgressBar';
 
 const Watch = (props) => {
   const [initialTime, setInitialTime] = useState(0);
@@ -75,7 +75,7 @@ const Watch = (props) => {
   };
 
   return (
-    <div className=' d-flex flex-column justify-content-between align-items-center m-5 w-75 bg-light py-5 rounded-3 shadow-lg'>
+    <div className='col-12  col-xs-8 col-sm-8 col-md-10 col-lg-10 col-xl-6 d-flex flex-column justify-content-between align-items-center m-5 w-50 bg-light p-5 rounded-5 shadow'>
       {isShowModal ? showModal() : null}
       {isProgressEnable ? null : (
         <div className='input-group mb-3 px-5'>
@@ -117,26 +117,20 @@ const Watch = (props) => {
         </div>
       )}
       {isProgressEnable ? (
-        <div className='d-block w-75'>
-          <Progress
-            timer={initialTime}
-            isProgress={isProgressEnable}
-            isPaused={paused}
-            isReset={isReset}
-          />
-          <Timer
-            initialHours={hours}
-            initialMinutes={minutes}
-            isProgress={isProgressEnable}
-            onPause={(isPaused) => handlePause(isPaused)}
-            stop={() => setIsProgressEnable(!isProgressEnable)}
-            reset={() => {
-              setInitialTime(0);
-              setIsReset(!isReset);
-            }}
-            todo={todo}
-          />
-        </div>
+        <CircleProgressBar
+          timer={initialTime}
+          isProgress={isProgressEnable}
+          isPaused={paused}
+          isReset={isReset}
+          initialHours={hours}
+          initialMinutes={minutes}
+          onPause={(isPaused) => handlePause(isPaused)}
+          stop={() => setIsProgressEnable(!isProgressEnable)}
+          reset={() => {
+            setInitialTime(0);
+            setIsReset(!isReset);
+          }}
+        />
       ) : null}
     </div>
   );
