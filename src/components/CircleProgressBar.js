@@ -92,9 +92,10 @@ const CircleProgressBar = (props) => {
       <CircularProgressbar
         styles={buildStyles({
           
-          strokeLinecap: 'round',
+          strokeLinecap: 'butt',
           trailColor: '#ccc',
           textColor: '#fb5607',
+          rotation: 1 / 2 + 1 / 8
         })}
         value={(seconds * 100) / (timer * 60)}
         text={`${
@@ -103,8 +104,8 @@ const CircleProgressBar = (props) => {
           runningSeconds < 10 ? `0${runningSeconds}` : `${runningSeconds}`
         }`}
         strokeWidth={15}
-        circleRatio={1}
-        counterClockwise
+        circleRatio={0.75}
+        
         
       />
       <div className='d-inline-flex mt-3'>
